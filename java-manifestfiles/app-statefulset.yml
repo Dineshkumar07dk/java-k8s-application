@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: vproapp-statefulset
+spec:
+  replicas: 3
+  serviceName: vproapp-service
+  selector:
+    matchLabels:
+      app: vproapp
+  template:
+    metadata:
+      labels:
+        app: vproapp
+    spec:
+      containers:
+      - name: vproapp
+        image: dineshdk07/vpro:new
+        ports:
+        - name: vproapp-port
+          containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: vproapp-configmap
+        - secretRef:
+            name: vproapp-secret
+      volumes:
+        - name: vpro-data
+          persistentVolumeClaim:
+            claimName: vpro-pvc

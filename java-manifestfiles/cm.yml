@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vproapp-configmap
+data:
+  jdbc.driverClassName: "com.mysql.jdbc.Driver"
+  jdbc.url: "jdbc:mysql://java-db.cju0yoecu5ow.ap-south-1.rds.amazonaws.com:3306/accounts"
+  jdbc.username: "admin"
+
